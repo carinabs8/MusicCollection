@@ -15,3 +15,4 @@ require("font-awesome/scss/font-awesome.scss");
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//https://startbootstrap.com/previews/sb-admin-2/
