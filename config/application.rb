@@ -10,6 +10,8 @@ module MusicCollection
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.autoloader = :zeitwerk#
+    config.eager_load_paths += %W(#{Rails.root}/vendor/assets)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
