@@ -13,6 +13,8 @@ module MusicCollection
     config.autoloader = :zeitwerk#
     config.eager_load_paths += %W(#{Rails.root}/vendor/assets)
 
+    config.action_mailer.default_url_options = { :host => ENV['MAILHUB_DOMAIN'] }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
