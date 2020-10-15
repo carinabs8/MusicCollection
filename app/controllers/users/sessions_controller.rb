@@ -1,13 +1,13 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
   layout "sign_in"
+  before_action :configure_permitted_parameters
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource/sign_in
   # def create
@@ -18,11 +18,11 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  protected
+  def configure_permitted_parameters
+    added_attrs = [:username, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
 end
