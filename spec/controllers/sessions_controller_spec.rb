@@ -19,6 +19,16 @@ RSpec.describe Users::SessionsController, :type => :controller do
       post :create, params: {user: {username: user.username, password: user.password}}
       expect(response).to have_http_status(:redirect)
     end
+
+    it "Should return 'Sorry, we couldn't find an account with this username. Please check you're using the right username and try again.' when user try to authenticate with invalid login" do
+      post :create, params: {user: {username: user.username, password: "ooo"}}
+      expect(flash["alert"]).to eq("Sorry, we couldn't find an account with this username. Please check you're using the right username and try again.")
+    end
+
+    it "Should redirect to Artists list when succefully logged" do
+      post :create, params: {user: {username: user.username, password: user.password}}
+      expect(response).to redirect_to(artists_path)
+    end
   end
 
 end

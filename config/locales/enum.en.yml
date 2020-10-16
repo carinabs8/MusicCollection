@@ -1,0 +1,6 @@
+en:
+  enum:
+    attributes:
+      profile_enum:
+        admin: "Admin"
+        user: "User"

@@ -2,3 +2,4 @@ en:
   hello: "Hello world"
   login: Login
   create_an_account: "Create an account"
+  register: "Register Account"

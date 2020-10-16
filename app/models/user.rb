@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   validate :validate_username
 
+  validates :role, :fullname, presence: true
+  validates :role, inclusion: {in: ProfileEnum.values}
+
 	def validate_username
 	  if User.where(email: username).exists?
 	    errors.add(:username, :invalid)
