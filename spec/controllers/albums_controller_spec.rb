@@ -23,9 +23,9 @@ RSpec.describe AlbumsController, :type => :controller do
 
   describe "GET 'new'" do
     before(:each) do
-      allow_any_instance_of(ArtistServer).to receive(:get_all).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
+      allow_any_instance_of(ArtistServer).to receive(:get_all_body).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
     end
-    
+
     it "should have access to new album page" do
       sign_in(user)
       get 'new'
@@ -40,7 +40,7 @@ RSpec.describe AlbumsController, :type => :controller do
 
   describe "GET 'create'" do
     before(:each) do
-      allow_any_instance_of(ArtistServer).to receive(:get_all).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
+      allow_any_instance_of(ArtistServer).to receive(:get_all_body).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
     end
 
     it "should create new album page" do
@@ -60,5 +60,50 @@ RSpec.describe AlbumsController, :type => :controller do
       expect(response).to have_http_status(302)
     end
   end
+
+  describe "GET 'edit'" do
+    let(:album) { create(:album)}
+
+    before(:each) do
+      allow_any_instance_of(ArtistServer).to receive(:get_all_body).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
+    end
+
+    it "should have access to new album page" do
+      sign_in(user)
+      get 'edit', params: {id: album.id}
+      expect(response).to have_http_status(:success)
+    end
+
+    it "Shouldnt be allow user that is not log in" do
+      get 'edit', params: {id: album.id}
+      expect(response).to have_http_status(302)
+    end
+  end
+
+  describe "GET 'update'" do
+    before(:each) do
+      allow_any_instance_of(ArtistServer).to receive(:get_all_body).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
+    end
+
+    let(:album) { create(:album)}
+
+    it "should update album page" do
+      sign_in(user)
+      patch 'update', params: {id: album.id, album: {name: "KAty"}}
+      expect(response).to redirect_to(albums_path)
+    end
+
+    it "should render to edit action if record wasnt valid" do
+      sign_in(user)
+      patch 'update', params: {id: album.id, album: {name: ""}}
+      expect(response).to render_template("albums/edit")
+    end
+
+    it "Shouldnt be allow user that is not log in" do
+      patch 'update', params: {id: album.id, album: {name: "KAty"}}
+      expect(response).to have_http_status(302)
+    end
+  end
+
 
 end

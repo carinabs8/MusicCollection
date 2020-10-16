@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
 	def index
-		@artists = JSON.parse(ArtistServer.new.get_all.body)
+		@artists = ArtistServer.new.get_all_body
 	end
 end

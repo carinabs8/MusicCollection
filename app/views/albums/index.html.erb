@@ -7,16 +7,23 @@
 				<%= content_tag :i, "", class: "fa fa-plus" %>
 			<% end %>
 		</h1>
+	</div>
 </div>
 <div class="row">
-	<% @albums.each do |_key, album| %>
-		<div class="card mb-4 py-3 border-left-primary">
-	    <div class="card-body">
-	    	<%= album.name %>
-	    	<%= album.artist_name %>
-	    	<%= album.twitter %>
-	    	<%= album.year %>
-	    </div>
-	  </div>
+	<% @albums.each do |album| %>
+		<div class="card" style="width: 18rem;">
+		  <div class="card-body">
+		    <h5 class="card-title"><%= album.name %></h5>
+		    <h6 class="card-subtitle mb-2 text-muted"><%= album.artist_name %></h6>
+		    <ul>
+		    	<li><%= album.twitter %></li>
+		    	<li><%= album.year %></li>
+		    </ul>
+		    <%= link_to t(:update), edit_album_path(album.id), class: "card-link" %>
+		    <%= link_to t(:delete), album_path(album.id), class: "card-link", data: {:confirm => 'Are you sure?'}, :method => :delete  %>
+
+		  </div>
+		</div>
 	<% end %>
+	<%= paginate @albums %>
 </div>

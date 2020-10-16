@@ -16,6 +16,20 @@ class AlbumsController < ApplicationController
 		end
 	end
 
+	def edit
+		@album = Album.where(id: params[:id]).first
+	end
+
+	def update
+		@album = Album.where(id: params[:id]).first
+
+		if(@album.update(album_params))
+			redirect_to albums_path, notice: "Successfully updated"
+		else
+			render :edit
+		end
+	end
+
 	protected
 	def album_params
 		params.require(:album).permit(:name, :artist_name, :twitter, :artist_id, :year)

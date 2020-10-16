@@ -4,7 +4,7 @@ en:
   create_an_account: "Create an account"
   register: "Register Account"
   albums: "Albums"
-  artits: "Artists"
+  artists: "Artists"
   create: "Create"
   album:
     new: "New album"

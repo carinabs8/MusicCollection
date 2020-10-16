@@ -8,7 +8,7 @@ class Album < ApplicationRecord
   before_validation :set_artist_attributes
 
   def artists_collection
-  	JSON.parse(ArtistServer.new.get_all.body).map{|k, v| [v["name"], k]}
+  	JSON.parse(ArtistServer.new.get_all_body).map{|k, v| [v["name"], k]}
   end
 
   private

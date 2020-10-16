@@ -12,7 +12,7 @@ RSpec.describe ArtistsController, :type => :controller do
     it "should have access to list of artists" do
       sign_in(user)
       get 'index'
-      allow_any_instance_of(ArtistServer).to receive(:get_all).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
+      allow_any_instance_of(ArtistServer).to receive(:get_all_body).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
       expect(response).to have_http_status(:success)
     end
 
