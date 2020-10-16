@@ -64,3 +64,9 @@ gem 'devise'
 gem 'kaminari'
 gem "pundit"
 gem 'simple_form'
+
+gem 'faraday_middleware', '~> 1.0'
+gem "faraday-http-cache"
+gem "oj", "~> 2.18.0"
+# Memcache
+gem "dalli", "~> 2.7", ">= 2.7.6"
