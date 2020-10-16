@@ -105,5 +105,14 @@ RSpec.describe AlbumsController, :type => :controller do
     end
   end
 
+  describe "DELETE" do
+    let(:album) { create(:album)}
+
+    it "Should delete some album" do
+      sign_in(user)
+      delete :destroy, params: {id: album.id}
+      expect(response).to redirect_to(albums_path)
+    end
+  end
 
 end

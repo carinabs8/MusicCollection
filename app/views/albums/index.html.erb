@@ -20,7 +20,9 @@
 		    	<li><%= album.year %></li>
 		    </ul>
 		    <%= link_to t(:update), edit_album_path(album.id), class: "card-link" %>
-		    <%= link_to t(:delete), album_path(album.id), class: "card-link", data: {:confirm => 'Are you sure?'}, :method => :delete  %>
+		    <% if policy(album).delete? %>
+			    <%= link_to t(:delete), album_path(album.id), class: "card-link", data: {:confirm => 'Are you sure?'}, :method => :delete  %>
+		    <% end %>
 
 		  </div>
 		</div>

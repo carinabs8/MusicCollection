@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def email_required?
     false
   end
+
+  def admin?
+    role.to_sym == ProfileEnum::ADMIN
+  end
 end

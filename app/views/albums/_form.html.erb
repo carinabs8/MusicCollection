@@ -2,9 +2,9 @@
   <%= f.input :name, required: false, placeholder: true %>
   <%= f.input :artist_name, required: false, placeholder: true  %>
   <%= f.input :twitter, required: false, placeholder: true  %>
-  <%= f.input :artist_id, collection: album.artists_collection, required: false, placeholder: true  %>
+  <%= f.input :artist_id, collection: Album.artists_collection, required: false, placeholder: true  %>
   <%= f.input :year, equired: false, placeholder: true  %>
   <div class="form-group form-actions">
-    <%= f.submit t(button_submit), { :class => "btn btn-primary btn-user btn-block" } %>
+    <%= f.submit t(params[:action]), { :class => "btn btn-primary btn-user btn-block" } %>
   </div><!--/form-group-->
 <% end %>

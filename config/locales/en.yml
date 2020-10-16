@@ -5,6 +5,9 @@ en:
   register: "Register Account"
   albums: "Albums"
   artists: "Artists"
+  new: "Create"
   create: "Create"
+  update: "Update"
+  edit: "Update"
   album:
     new: "New album"

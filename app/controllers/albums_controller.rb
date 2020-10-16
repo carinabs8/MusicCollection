@@ -30,6 +30,17 @@ class AlbumsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@album = Album.where(id: params[:id]).first
+		authorize @album
+
+		if @album.destroy
+	    redirect_to albums_path, notice: "Successfully deleted"
+	  else
+	    redirect_to albums_path, notice: "Something went wrong, please contact system admin!"
+	  end
+	end
+
 	protected
 	def album_params
 		params.require(:album).permit(:name, :artist_name, :twitter, :artist_id, :year)

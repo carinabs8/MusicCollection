@@ -10,8 +10,10 @@ class ArtistServer
 	end
 
 	def get_by_id(id)
-		return if id.blank?
-		get_all_body[id.to_s].map{|key, value| {attributes[key] => value} }
+		return {artist_id: nil, twitter: nil, artist_name: nil} if id.blank?
+		hash_ = {}
+		get_all_body[id.to_s].each{|key, value| hash_.merge!({ attributes[key] => value}) }
+		hash_
 	end
 
 	private
