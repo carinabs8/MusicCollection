@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :artists
+  resources :artists, only: [:index]
+  resources :albums
 end

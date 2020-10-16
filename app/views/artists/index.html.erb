@@ -1,8 +1,11 @@
-<% @artists.each do |_key, artist| %>
-	<div class="card mb-4 py-3 border-left-primary">
-    <div class="card-body">
-    	<%= artist["name"] %>
-    	<%= artist["twitter"] %>
-    </div>
-  </div>
-<% end %>
+<h1><%= t(:artists) %></h1>
+<div class="row">
+	<% @artists.each do |_key, artist| %>
+		<div class="card mb-4 py-3 border-left-primary">
+	    <div class="card-body">
+	    	<%= artist["name"] %>
+	    	<%= artist["twitter"] %>
+	    </div>
+	  </div>
+	<% end %>
+</div>

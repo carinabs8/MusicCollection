@@ -18,7 +18,6 @@ RSpec.describe ArtistsController, :type => :controller do
 
     it "Shouldnt be allow user that is not log in" do
       get 'index'
-      allow_any_instance_of(ArtistServer).to receive(:get_all).and_return({"1"=>{"id"=>1, "twitter"=>"@justinbieber", "name"=>"Justin Bieber"}, "2"=>{"id"=>2, "twitter"=>"@katyperry", "name"=>"Katy Perry"}})
       expect(response).to have_http_status(302)
     end
   end

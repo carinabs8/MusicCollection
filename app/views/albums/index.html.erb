@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-sm-8">
+		<h1>
+			<%= t(:albums) %>
+			<%= link_to new_album_path, class: "btn btn-link" do %>
+				<%= (:new) %>
+				<%= content_tag :i, "", class: "fa fa-plus" %>
+			<% end %>
+		</h1>
+</div>
+<div class="row">
+	<% @albums.each do |_key, album| %>
+		<div class="card mb-4 py-3 border-left-primary">
+	    <div class="card-body">
+	    	<%= album.name %>
+	    	<%= album.artist_name %>
+	    	<%= album.twitter %>
+	    	<%= album.year %>
+	    </div>
+	  </div>
+	<% end %>
+</div>

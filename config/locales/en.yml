@@ -3,3 +3,8 @@ en:
   login: Login
   create_an_account: "Create an account"
   register: "Register Account"
+  albums: "Albums"
+  artits: "Artists"
+  create: "Create"
+  album:
+    new: "New album"
